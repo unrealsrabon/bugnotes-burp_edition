@@ -173,8 +173,8 @@ BugNotes is built around a small number of tight, well-guarded control loops:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-org>/bugnotes.git
-cd bugnotes
+git clone https://github.com/unrealsrabon/bugnotes-burp_edition.git
+cd bugnotes-burp_edition
 ```
 
 ### 2. Build cleanly with the bundled `build.gradle`
