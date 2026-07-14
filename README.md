@@ -242,11 +242,10 @@ clause. The table below is a direct traceability matrix.
 
 This project is dual-licensed under your choice of:
 
-- **MIT License** — permissive, simple, attribution-only.
 - **Apache License 2.0** — permissive with an explicit patent grant.
 
 ```
-SPDX-License-Identifier: MIT OR Apache-2.0
+SPDX-License-Identifier: Apache-2.0
 ```
 
 You may use, modify, and redistribute BugNotes under the terms of either license.
