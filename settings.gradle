@@ -1,0 +1,5 @@
+/*
+ * Gradle settings for the BugNotes Burp Suite extension.
+ * Defines the root project name; the produced artifact is build/libs/BugNotes.jar.
+ */
+rootProject.name = 'BugNotes'

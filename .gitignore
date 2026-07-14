@@ -1,0 +1,14 @@
+# Gradle
+.gradle/
+build/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+
+# Burp project files (test artifacts, not part of the extension)
+*.burp

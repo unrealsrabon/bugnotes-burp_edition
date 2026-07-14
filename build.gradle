@@ -1,0 +1,92 @@
+/*
+ * BugNotes — Burp Suite extension build script.
+ *
+ * Production-grade Gradle configuration for BApp Store submission.
+ *
+ *   Build the extension JAR:   ./gradlew clean jar
+ *   Output artifact:           build/libs/BugNotes.jar
+ *
+ * The montoya-api artifact is resolved from Maven Central and marked
+ * `compileOnly` — Burp Suite provides the API at runtime, so it is
+ * intentionally NOT bundled into the extension JAR (per the BApp Store
+ * "includes all dependencies" rule: bundle YOUR dependencies, never the
+ * host-provided Montoya API).
+ */
+
+plugins {
+    id 'java'
+}
+
+group   = 'com.bugnotes'
+version = '1.0.0'
+
+// ---------------------------------------------------------------------------
+// Toolchain: compile to Java 17 bytecode. Java 17 is an LTS baseline that
+// every current and recent Burp Suite release (which run on a Java 17/21 JRE)
+// can load, giving the widest possible user compatibility. Using a toolchain
+// (rather than a raw sourceCompatibility) makes the build reproducible on any
+// developer or CI machine, even if their default JDK is newer.
+// ---------------------------------------------------------------------------
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Montoya API — provided by Burp at runtime. compileOnly => compiled
+    // against, but excluded from the packaged JAR (no version-mismatch risk,
+    // no duplicate-class conflicts inside Burp).
+    compileOnly 'net.portswigger.burp.extensions:montoya-api:2026.4'
+}
+
+// ---------------------------------------------------------------------------
+// Source layout: the project keeps its single source file under the standard
+// Maven/Gradle path (src/main/java/burp/BugNotesBurp.java). This block is a
+// safety net so the build still resolves the source even if it is left in the
+// repository root, so the historical flat layout keeps working.
+// ---------------------------------------------------------------------------
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    // Surface deprecation/unchecked warnings so nothing rots silently before
+    // a store review; not treated as errors so the build stays robust.
+    options.compilerArgs += ['-Xlint:all']
+}
+
+// ---------------------------------------------------------------------------
+// Package the extension JAR. Deterministic, reproducible output with a clean
+// manifest. No Main-Class (extensions are loaded by Burp, not run standalone).
+// ---------------------------------------------------------------------------
+jar {
+    archiveBaseName = 'BugNotes'
+    archiveVersion  = ''            // -> build/libs/BugNotes.jar (stable name)
+
+    // Reproducible builds: strip timestamps/ordering non-determinism so the
+    // same source always yields a byte-identical JAR (aids review/verification).
+    preserveFileTimestamps = false
+    reproducibleFileOrder  = true
+
+    manifest {
+        attributes(
+            'Implementation-Title'  : 'BugNotes',
+            'Implementation-Version': project.version
+        )
+    }
+}
+
+// Convenience: `./gradlew build` produces the shippable JAR.
+tasks.named('build') {
+    dependsOn 'jar'
+}

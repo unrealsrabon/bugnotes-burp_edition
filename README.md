@@ -173,8 +173,8 @@ BugNotes is built around a small number of tight, well-guarded control loops:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/unrealsrabon/bugnotes-burp_edition.git
-cd bugnotes-burp_edition
+git clone https://github.com/<your-org>/bugnotes.git
+cd bugnotes
 ```
 
 ### 2. Build cleanly with the bundled `build.gradle`
@@ -242,10 +242,11 @@ clause. The table below is a direct traceability matrix.
 
 This project is dual-licensed under your choice of:
 
+- **MIT License** — permissive, simple, attribution-only.
 - **Apache License 2.0** — permissive with an explicit patent grant.
 
 ```
-SPDX-License-Identifier: Apache-2.0
+SPDX-License-Identifier: MIT OR Apache-2.0
 ```
 
 You may use, modify, and redistribute BugNotes under the terms of either license.
