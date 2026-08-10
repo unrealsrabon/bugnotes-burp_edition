@@ -250,5 +250,5 @@ SOFTWARE.
 ---
 
 <div align="center">
-<sub><b>BugNotes.</b> Offline. Project scoped. Built for researchers who think in Markdown.</sub>
+<sub><b>BugNotes.</b> Created by Shakil Ahmed Srabon</sub>
 </div>
