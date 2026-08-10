@@ -1,261 +1,254 @@
 <div align="center">
+<img src="bugnotes-icon.svg" width="64" height="64" alt="BugNotes icon">
 
 # BugNotes
 
-### A native, Montoya-API powered Markdown notebook engineered directly into Burp Suite
+**A Markdown notebook built directly into Burp Suite, for people who test in Burp and write in Markdown.**
 
-<br/>
+<br>
 
 ![Burp Suite](https://img.shields.io/badge/Burp_Suite-Extension-FF6633?style=for-the-badge&logo=burpsuite&logoColor=white)
-![Montoya API](https://img.shields.io/badge/Montoya_API-2026.4-1A1A1A?style=for-the-badge&logo=java&logoColor=white)
-![Java](https://img.shields.io/badge/Java-17_LTS-007396?style=for-the-badge&logo=openjdk&logoColor=white)
-![Build](https://img.shields.io/badge/Build-Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
-
-![Offline First](https://img.shields.io/badge/Offline-First-2E7D32?style=flat-square)
-![Zero Dependencies](https://img.shields.io/badge/Runtime_Dependencies-0-2E7D32?style=flat-square)
-![Session Bound](https://img.shields.io/badge/Storage-Project_Scoped-1565C0?style=flat-square)
-![BApp Ready](https://img.shields.io/badge/BApp_Store-Compliant-6A1B9A?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT_%2F_Apache--2.0-4E342E?style=flat-square)
+![Java](https://img.shields.io/badge/Java-17-007396?style=for-the-badge&logo=openjdk&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-4E342E?style=for-the-badge)
+![Offline](https://img.shields.io/badge/Offline_First-2E7D32?style=flat-square)
+![Storage](https://img.shields.io/badge/Storage-Project_Scoped-1565C0?style=flat-square)
+![Zero Telemetry](https://img.shields.io/badge/Telemetry-None-6A1B9A?style=flat-square)
 
 </div>
 
+<br>
+
+## <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/info.svg" width="22" valign="middle"> Overview
+
+Security testing usually means juggling two windows: Burp Suite for the actual work, and a separate notes app on the side for writing down what you find. BugNotes removes that second window. It is a full Markdown notebook that lives inside Burp Suite itself, so payloads, findings, and draft report text stay in the same place you are already working.
+
+It is built for bug bounty hunters, penetration testers, and anyone who spends long sessions inside Burp and wants a fast, clean place to keep notes without leaving the tool.
+
 ---
 
-## `>_` Blueprint Summary
-
-> **BugNotes** is a purpose-built Markdown workbench that lives *inside* Burp Suite — not
-> beside it. It is written entirely against the **Montoya API** and native **Java Swing**,
-> giving security researchers a distraction-free, offline-first place to capture payloads,
-> triage findings, and draft reports without ever leaving their testing surface.
-
-Every note is a pure Markdown text buffer persisted through
-`api.persistence().extensionData()`, which means your work is **session-bound to the active
-`.burp` project** — it travels with the project file and never leaks to disk, the cloud, or
-a third-party service unless *you* explicitly export it. No telemetry. No network calls. No
-external runtime dependencies. What happens in the project, stays in the project.
+## <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shield.svg" width="22" valign="middle"> Why it matters
 
 <table>
 <tr>
-<td width="33%" valign="top">
+<td width="60" align="center"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/wifi-off.svg" width="26"></td>
+<td><b>Fully offline.</b> BugNotes never makes a network call. It behaves exactly the same on an isolated, air gapped machine as it does anywhere else.</td>
+</tr>
+<tr>
+<td align="center"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/folder.svg" width="26"></td>
+<td><b>Stored with your project.</b> Notes are saved inside your active Burp project file, not in a separate database and not on any server.</td>
+</tr>
+<tr>
+<td align="center"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/eye-off.svg" width="26"></td>
+<td><b>No tracking.</b> No analytics, no usage data, nothing sent anywhere unless you choose to export a file yourself.</td>
+</tr>
+<tr>
+<td align="center"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/layers.svg" width="26"></td>
+<td><b>Client work stays separated.</b> Because notes travel with the project file, notes from one engagement never mix with another.</td>
+</tr>
+</table>
 
-**`[ Offline-First ]`**
+---
 
-Zero outbound traffic. Fully operational on air-gapped, high-security networks. Nothing to phone home.
+## <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/list.svg" width="22" valign="middle"> Features
 
+<table>
+<tr valign="top">
+<td width="50%">
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/bold.svg" width="22"><br>
+<b>Markdown formatting toolbar</b><br>
+<sub>Bold, italic, headings, quotes, links, and code blocks, applied instantly to whatever text you have selected.</sub>
 </td>
-<td width="33%" valign="top">
-
-**`[ Session-Bound Safety ]`**
-
-Notes persist inside the active Burp project store — scoped, portable, and never silently written to the host filesystem.
-
+<td width="50%">
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/type.svg" width="22"><br>
+<b>Font family switcher</b><br>
+<sub>Pick any font installed on your system. Monospaced fonts are shown first, since they are usually best for reading payloads.</sub>
 </td>
-<td width="33%" valign="top">
-
-**`[ Native Theming ]`**
-
-Every control is a stock Swing component driven by Burp's own theme engine — flawless Light and Dark parity, no hardcoded colors.
-
+</tr>
+<tr valign="top">
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/zoom-in.svg" width="22"><br>
+<b>Zoom controls</b><br>
+<sub>Increase or decrease text size at any time, useful for long sessions or reading small print comfortably.</sub>
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/search.svg" width="22"><br>
+<b>Built in search</b><br>
+<sub>A find bar highlights every match inside the current note and shows a live count of results.</sub>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/corner-down-right.svg" width="22"><br>
+<b>Send selection to notes</b><br>
+<sub>Right click any highlighted text in a request or response and send it straight into your active note.</sub>
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/code.svg" width="22"><br>
+<b>Send selection to Decoder</b><br>
+<sub>Send highlighted note text directly to Burp's Decoder tool without copying and pasting.</sub>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/save.svg" width="22"><br>
+<b>Autosave</b><br>
+<sub>Notes save automatically as you type. Switching notes, closing the tab, or unloading the extension never loses your work.</sub>
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/hash.svg" width="22"><br>
+<b>Line numbers</b><br>
+<sub>A line number gutter makes it easy to reference a specific point in long pasted logs or payloads.</sub>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/sun.svg" width="22"><br>
+<b>Active line highlight</b><br>
+<sub>The line your cursor is on is gently highlighted, so your position stays visible in dense text.</sub>
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/moon.svg" width="22"><br>
+<b>Matches your Burp theme</b><br>
+<sub>Follows Burp's light and dark mode automatically. There is no separate theme setting to manage.</sub>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/upload.svg" width="22"><br>
+<b>Import and export</b><br>
+<sub>Bring in existing Markdown files or export any note as a clean, portable file whenever you need it outside Burp.</sub>
+</td>
+<td>
+<img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/sidebar.svg" width="22"><br>
+<b>Multiple notes, one place</b><br>
+<sub>Keep separate notes for different targets or stages of testing, organized in a simple side list.</sub>
 </td>
 </tr>
 </table>
 
 ---
 
-## `#` Feature Breakdown
+## <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/zap.svg" width="22" valign="middle"> Built for long sessions
 
-BugNotes is small on the disk and deep in the details. Below is the engineered mechanics
-list — each one is a deliberate design decision, not an accident.
-
-### Single-Row Fluid Responsive Toolbar
-
-A `BorderLayout`-anchored command strip hosts every formatter on a leading `FlowLayout`
-(WEST) while vault utilities are pushed hard to the trailing edge (EAST). A dedicated
-`normalizeRowHeights()` pass pins every child — buttons **and** the font selector — to one
-shared height, so the entire row contracts and expands fluidly as the split divider is
-dragged, with no clipping and no vertical drift.
-
-### System Font-Family Selector
-
-A themed `JComboBox` is populated live from the host `GraphicsEnvironment`. Monospaced
-families (Mono, Consolas, Courier, Menlo, code-oriented faces) are intelligently floated to
-the top of the list — because payload and log work deserves a fixed-width canvas — while the
-full system font catalogue remains one click away.
-
-### Real-Time Font Zoom Scaling
-
-Instant `+ Zoom In` / `- Zoom Out` controls rescale the editor typography between an
-`8pt` floor and a `42pt` ceiling. The line-number gutter is driven to the **identical**
-font in 1:1 sync, and any live search highlights are re-laid-out against the new metrics so
-offsets never desynchronize.
-
-### Global Intelligent Caret / Cursor Positioning Engine
-
-Every Markdown formatter is caret-aware. Bold, italic, headings, blockquotes, inline code,
-links, and fenced blocks all operate on the live `Document`, wrap the current selection when
-present, and drop the caret at the *precise* runtime insertion point — for example
-`**|**`, `[|](URL)`, or squarely on the empty middle line of a fenced code block. The editor
-is then re-focused so the cursor is immediately blinking where you will type next.
-
-### Fixed Native Find-Bar
-
-A permanent, always-on find bar performs live, debounced in-note search. Every occurrence is
-highlighted; the active match is tinted stronger and scrolled into view; and a running
-counter reports `N / M highlights`. Match offsets and highlight tags are kept **strictly
-parallel** so navigation can never index into stale text.
-
-### Context-Menu 3-Line Append Routing
-
-Right-click any selection in a request or response and choose **Send selection to BugNotes**.
-The raw bytes are extracted **off the Event Dispatch Thread** (UTF-8 decoded so non-ASCII
-payloads round-trip losslessly) and appended to the active note — separated by exactly three
-line breaks from prior content for clean visual segmentation. No active note? BugNotes
-bootstraps a `Scratch Notes` buffer for you automatically.
-
-<div align="center">
-
-| Capability | Mechanic | Engineering Guarantee |
-|:--|:--|:--|
-| **Autosave** | Debounced Swing `Timer` (800 ms) | Flushes synchronously on unload, note-switch, import & capture — no edit is ever lost inside the debounce window |
-| **Persistence** | Version-tagged (`BUGNOTES-V4`) blob | Base64 + UTF-8 per field — pipes, newlines & binary bytes survive intact |
-| **Line Numbers** | Custom `Graphics2D` row-header gutter | Paints only the visible band; scales to very large captured logs |
-| **Active-Line Band** | Re-bindable `HighlightPainter` | Survives 100+ consecutive theme toggles without orphaning |
-| **Import / Export** | `SwingWorker` off-EDT disk I/O | Large or network-mounted files never freeze the Burp UI |
-| **Send to Decoder** | Right-click editor selection | Hands highlighted text straight to Burp's Decoder |
-
-</div>
+BugNotes stays responsive even when you paste in very large captured requests or long recon logs. Heavy work such as loading and saving files runs quietly in the background, so Burp's interface never freezes while BugNotes is busy. When the extension is removed or reloaded, it cleans up fully after itself and leaves nothing behind.
 
 ---
 
-## `<>` Architecture Loops
+## <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/download-cloud.svg" width="22" valign="middle"> Installation
 
-BugNotes is built around a small number of tight, well-guarded control loops:
+### What you need
 
-```
-  ┌──────────────────────────────────────────────────────────────────┐
-  │  allNotes  (authoritative, ordered master list — single source)   │
-  └──────────────────────────────────────────────────────────────────┘
-             │  mutate                          ▲  derive (read-only)
-             ▼                                  │
-     persistAll()  ──►  extensionData store     refreshView()  ──►  JList
-        (Base64 + UTF-8, version tagged)          (filtered projection only)
-             ▲
-             │  debounced / synchronous flush
-     editor Document  ◄── caret-aware formatters + live find-bar
-```
+<table>
+<tr>
+<td width="30%"><b>Java</b></td>
+<td>Version 17 or newer</td>
+</tr>
+<tr>
+<td><b>Gradle</b></td>
+<td>Used once to build the extension file</td>
+</tr>
+<tr>
+<td><b>Burp Suite</b></td>
+<td>Community or Professional, any recent version</td>
+</tr>
+</table>
 
-- **Single source of truth** — `allNotes` is the only authoritative model. The sidebar
-  `JList` is *always* a derived, filtered projection; it never owns note state. This design
-  closes the classic "filter-then-clear silently drops notes" data-loss trap at the root.
-- **Re-entrancy guards** — `loadingSelection`, `rebuilding`, and `themeRefreshing` flags fence
-  programmatic loads and theme cascades so listeners never fire spuriously against a
-  half-built state.
-- **Clean teardown** — a registered `ExtensionUnloadingHandler` flushes pending edits, stops
-  the autosave timer, detaches the caret listener + highlighter, and deregisters both the
-  suite-tab and context-menu registrations. Reload cycles leave nothing behind.
+### Steps
 
----
+<table>
+<tr valign="top">
+<td width="40" align="center"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/git-branch.svg" width="24"></td>
+<td>
 
-## `$` Installation & Compilation Guide
-
-### Prerequisites
-
-<div align="center">
-
-| Tool | Minimum | Notes |
-|:--|:--|:--|
-| **JDK** | 17 (LTS) | Build targets Java 17 bytecode for broadest Burp compatibility |
-| **Gradle** | 8.x | Or use the Gradle wrapper once generated |
-| **Burp Suite** | Community / Professional | Any recent release running a Java 17+ JRE |
-
-</div>
-
-### 1. Clone the repository
-
+**Download the source**
 ```bash
 git clone https://github.com/unrealsrabon/bugnotes-burp_edition.git
 cd bugnotes-burp_edition
 ```
+</td>
+</tr>
+<tr valign="top">
+<td align="center"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tool.svg" width="24"></td>
+<td>
 
-### 2. Build cleanly with the bundled `build.gradle`
-
+**Build the extension**
 ```bash
-# Produce the shippable extension JAR
 gradle clean jar
 ```
+This produces the extension file at `build/libs/BugNotes.jar`.
+</td>
+</tr>
+<tr valign="top">
+<td align="center"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/plus-square.svg" width="24"></td>
+<td>
 
-> If you prefer a self-contained, version-pinned build, generate a wrapper once
-> (`gradle wrapper`) and thereafter use `./gradlew clean jar`.
+**Load it into Burp Suite**
 
-The Montoya API is declared `compileOnly` and resolved from Maven Central — it is compiled
-against but **intentionally not bundled**, because Burp Suite provides it at runtime.
+Open Burp Suite, go to **Extensions**, then **Installed**, then **Add**. Set the extension type to **Java** and select the `BugNotes.jar` file you built.
+</td>
+</tr>
+<tr valign="top">
+<td align="center"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/check.svg" width="24"></td>
+<td>
 
-### 3. Locate the compiled asset
+**Start writing**
 
-```
-build/libs/BugNotes.jar      (~36 KB — pure extension classes, no bundled API)
-```
-
-### 4. Load into Burp Suite
-
-```
-Burp Suite  ->  Extensions  ->  Installed  ->  Add
-   Extension type : Java
-   Select file    : build/libs/BugNotes.jar
-   ->  Next  ->  Close
-```
-
-The **BugNotes** tab appears in the Burp toolbar immediately. Highlight text in any request
-or response, right-click, and choose **Send selection to BugNotes** to start capturing.
+A **BugNotes** tab appears in Burp's main toolbar. Highlight text anywhere in a request or response, right click, and choose **Send selection to BugNotes** to begin.
+</td>
+</tr>
+</table>
 
 ---
 
-## `[x]` Compliance & Licensing Specifications
+## <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg" width="22" valign="middle"> Frequently asked
 
-BugNotes was authored to satisfy the **PortSwigger BApp Store acceptance criteria** clause by
-clause. The table below is a direct traceability matrix.
+<table>
+<tr valign="top">
+<td width="35%"><b>Where are my notes actually saved</b></td>
+<td>Inside your Burp project file. If you use a temporary project, notes are discarded along with it, which is intentional and keeps engagements separate.</td>
+</tr>
+<tr valign="top">
+<td><b>Does BugNotes send anything over the network</b></td>
+<td>No. It makes no network calls at all, so it works the same on a closed or air gapped network.</td>
+</tr>
+<tr valign="top">
+<td><b>Can I keep a note outside of Burp</b></td>
+<td>Yes. Export any note as a plain Markdown file at any time, and import it back later or into a different project.</td>
+</tr>
+</table>
 
-<div align="center">
+---
 
-| BApp Store Criterion | Status | Implementation Evidence |
-|:--|:--:|:--|
-| Operates securely | `PASS` | HTTP content treated as untrusted; rendered as plain text; defensive Base64 decode |
-| Includes all dependencies | `PASS` | Zero external libs; Montoya `compileOnly`, never bundled |
-| Uses threads for responsiveness | `PASS` | All disk & byte-extraction work on `SwingWorker`, off the EDT |
-| Reports background exceptions | `PASS` | Every worker wraps its body; stack traces routed to `logToError` |
-| Unloads cleanly | `PASS` | `registerUnloadingHandler` -> full resource teardown |
-| Supports offline working | `PASS` | No network calls of any kind |
-| Uses Burp networking | `PASS` | N/A — issues no HTTP requests |
-| Copes with large projects | `PASS` | No long-term `HttpRequestResponse` refs; no SiteMap/history scans |
-| Provides a GUI parent | `PASS` | Dialogs parented to the frame-attached root panel |
-| Uses the Montoya API artifact | `PASS` | Declared via Gradle from Maven Central |
-| Uses Burp AI as default | `PASS` | N/A — contains no AI functionality |
+## <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" width="22" valign="middle"> License
 
-</div>
-
-> **Integrity Notes** — Notes are **project-scoped**: they live inside the active `.burp`
-> project and are discarded with a temporary project. This is intentional, isolating design
-> — not a defect. Persisted data is version-tagged so future loaders can migrate rather than
-> misread the layout.
-
-### License
-
-This project is dual-licensed under your choice of:
-
-- **Apache License 2.0** — permissive with an explicit patent grant.
+BugNotes is released under the MIT License.
 
 ```
-SPDX-License-Identifier: Apache-2.0
-```
+MIT License
 
-You may use, modify, and redistribute BugNotes under the terms of either license.
+Copyright (c) 2026 unrealsrabon
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ---
 
 <div align="center">
-
-**BugNotes** — built for researchers who think in Markdown and test in Burp.
-
-<sub>Native Swing · Montoya API · Offline-First · Session-Bound · Zero Telemetry</sub>
-
+<sub><b>BugNotes.</b> Offline. Project scoped. Built for researchers who think in Markdown.</sub>
 </div>
